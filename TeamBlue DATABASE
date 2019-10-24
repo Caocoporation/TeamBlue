@@ -1,0 +1,229 @@
+CREATE DATABASE TeamBlue;
+use TeamBlue;
+CREATE TABLE Patient(
+Patient_ID int IDENTITY(1,1)  NOT NULL ,
+Patient_Lastname VARCHAR (20) NOT NULL,
+Patient_Firstname VARCHAR (20) NOT NULL,
+Gender VARCHAR (20) NOT NULL,
+Address VARCHAR (20) NOT NULL,
+Phone_Number VARCHAR (20) NOT NULL,
+Email VARCHAR (30) NOT NULL,
+DOB Date NOT NULL,
+PRIMARY KEY (Patient_ID)
+);
+
+
+INSERT INTO Patient (Patient_Lastname, Patient_Firstname, Gender, Address, Phone_Number, Email, DOB)
+VALUES ('Smith', 'John', 'male','rexdale blv', '7895671234','Smith123@hotmail.com','1987-08-11');
+INSERT INTO Patient (Patient_Lastname, Patient_Firstname, Gender, Address, Phone_Number, Email, DOB )
+VALUES ('Kirk', 'James', 'male','leslie street' ,'3458904321','KirkJames12@gmail.com','1989-06-03');
+INSERT INTO Patient (Patient_Lastname, Patient_Firstname, Gender, Address, Phone_Number, Email, DOB )
+VALUES ('Archer', 'Jonathan', 'male' ,'kipling avenue' ,'4563217890','Archer124@yahoo.com.ca','1999-11-20');
+INSERT INTO Patient (Patient_Lastname, Patient_Firstname, Gender, Address, Phone_Number, Email, DOB  )
+VALUES ('Taylor', 'Patricia', 'female' ,'tiberwood' ,'2348907654','Patricia574t@gmail.com','1985-08-11');
+INSERT INTO Patient (Patient_Lastname, Patient_Firstname, Gender, Address, Phone_Number, Email, DOB  )
+VALUES ('Lopez', 'Marry', 'female' ,'queensway' ,'8762340987','Lopez765@gmail','1983-02-28');
+INSERT INTO Patient (Patient_Lastname, Patient_Firstname, Gender, Address, Phone_Number, Email, DOB  )
+VALUES ('Scott', 'Montgommery', 'male','royal york' ,'2348904567','Scott098@hotmail.com','1980-03-31');
+INSERT INTO Patient (Patient_Lastname, Patient_Firstname, Gender, Address, Phone_Number, Email, DOB  )
+VALUES ('Lee', 'Susan', 'female','humberwood','1234567890','SusanL145@gmail.com','1995-04-11');
+INSERT INTO Patient (Patient_Lastname, Patient_Firstname, Gender, Address, Phone_Number, Email, DOB  )
+VALUES ('Wilson', 'Catherine', 'female','bathurst street','5673218901','Wilson098@gmail.com','1997-05-10');
+/* ----------------------------------------------------------------------------------------------------------------------------------- */
+
+CREATE TABLE Bill (
+Bill_ID int IDENTITY(1,1) NOT NULL,
+Bill_Date VARCHAR (20) NOT NULL,
+Patient_ID int NOT NULL,
+Employee_ID VARCHAR (20) ,
+Treatment_ID VARCHAR (20) NOT NULL ,
+Treatment_Fee money,
+PRIMARY KEY(Bill_ID)
+);
+
+INSERT INTO Bill (Bill_Date, Patient_ID, Employee_ID, Treatment_ID, Treatment_Fee)
+VALUES ('2019-08-11', '7', 'D202','4', '$50');
+INSERT INTO Bill (Bill_Date, Patient_ID, Employee_ID, Treatment_ID, Treatment_Fee)
+VALUES ('2019-04-12', '8', 'D204','1', '$60');
+INSERT INTO Bill (Bill_Date, Patient_ID, Employee_ID, Treatment_ID, Treatment_Fee)
+VALUES ('2019-07-01' , '6', 'D206','7', '$20');
+INSERT INTO Bill (Bill_Date, Patient_ID, Employee_ID, Treatment_ID, Treatment_Fee)
+VALUES ('2019-08-15', '2', 'D208','3', '$30');
+INSERT INTO Bill (Bill_Date, Patient_ID, Employee_ID, Treatment_ID, Treatment_Fee)
+VALUES ('2019-07-16', '1', 'D209','8', '$60');
+INSERT INTO Bill (Bill_Date, Patient_ID, Employee_ID, Treatment_ID, Treatment_Fee)
+VALUES ('2019-06-17', '4', 'D203','2', '$55');
+INSERT INTO Bill (Bill_Date, Patient_ID, Employee_ID, Treatment_ID, Treatment_Fee)
+VALUES ('2019-05-19', '3', 'D205','9', '$40');
+INSERT INTO Bill (Bill_Date, Patient_ID, Employee_ID, Treatment_ID, Treatment_Fee)
+VALUES ('2019-04-04', '5', 'D207','10', '$45');
+/* ----------------------------------------------------------------------------------------------------------------------------------- */
+
+CREATE TABLE Appointment(
+Appointment_ID int IDENTITY(1,1) NOT NULL,
+Patient_ID int,
+Employee_ID  varchar(20),
+Appointment_Date date NOT NULL,
+Location VARCHAR (20) NOT NULL,
+PRIMARY KEY(Appointment_ID)
+);
+
+INSERT INTO Appointment (Employee_ID, Patient_ID , Appointment_Date, Location)
+VALUES ('D202','1','2019-03-08', '3071 Pharmacy Ave');
+INSERT INTO Appointment (Employee_ID, Patient_ID , Appointment_Date, Location)
+VALUES ('D204','3','2019-03-13', '2543 Pharmacy Ave');
+INSERT INTO Appointment (Employee_ID, Patient_ID , Appointment_Date, Location)
+VALUES ('D206','4','2019-03-04', '2543 Pharmacy Ave');
+INSERT INTO Appointment (Employee_ID, Patient_ID , Appointment_Date, Location)
+VALUES ('D208','6','2019-03-03', '3071 Pharmacy Ave');
+INSERT INTO Appointment (Employee_ID, Patient_ID ,  Appointment_Date, Location)
+VALUES ('D209','5','2019-03-31', '2543 Pharmacy Ave');
+INSERT INTO Appointment (Employee_ID, Patient_ID , Appointment_Date, Location)
+VALUES ('D203','7','2019-03-02', '3071 Pharmacy Ave');
+INSERT INTO Appointment (Employee_ID, Patient_ID , Appointment_Date, Location)
+VALUES ('D205','2','2019-03-01', '2543 Pharmacy Ave');
+INSERT INTO Appointment ( Employee_ID, Patient_ID , Appointment_Date, Location)
+VALUES ('D202','8','2019-03-18', '2543 Pharmacy Ave');
+
+/* ------------------------------------------------------------------------------------------------------------------------------------- */
+CREATE TABLE Treatment(
+Treatment_ID int identity(1,1) NOT NULL,
+Treatment_date VARCHAR (20) NOT NULL,
+Patient_ID int ,
+Employee_ID VARCHAR (20) ,
+Diagnosis VARCHAR (200) NOT NULL,
+Treatment VARCHAR (200) NOT NULL,
+PRIMARY KEY(Treatment_ID)
+);
+
+
+INSERT INTO Treatment (Treatment_Date, Patient_ID, Employee_ID, Diagnosis, Treatment)
+VALUES ('2019-03-13','3','D207', 'Tooth decay caries', 'Remove the decayed tooth');
+INSERT INTO Treatment (Treatment_date, Patient_ID, Employee_ID, Diagnosis, Treatment)
+VALUES ('2019-03-04','4' ,'D209', 'Migraine headache', 'Drink some pain reliever and relax');
+INSERT INTO Treatment (Treatment_Date, Patient_ID, Employee_ID, Diagnosis, Treatment)
+VALUES ('2019-03-02','7', 'D209', 'Joint pains', 'Drink some pain killer and relax ');
+INSERT INTO Treatment ( Treatment_date, Patient_ID, Employee_ID, Diagnosis, Treatment)
+VALUES ('2019-03-03','6','D207', 'Sore throat', 'Gargle with salt water and rest');
+INSERT INTO Treatment ( Treatment_date, Patient_ID, Employee_ID, Diagnosis, Treatment)
+VALUES ('2019-03-31','5' ,'D206', 'Fever', 'Stay in bed and keep hydrated');
+INSERT INTO Treatment (Treatment_date, Patient_ID, Employee_ID, Diagnosis, Treatment)  
+VALUES ('2019-03-08','1', 'D206', 'Influenza', 'Drink enough water and rest');
+INSERT INTO Treatment (Treatment_date, Patient_ID, Employee_ID, Diagnosis, Treatment)
+VALUES ('2019-03-01','2'  ,'D206', 'Diarrhea','Stay hydrated and drink some loperamide');
+INSERT INTO Treatment ( Treatment_date, Patient_ID, Employee_ID, Diagnosis, Treatment)
+VALUES ('2019-03-18','8','D206', 'Stuffy nose', 'Take a hot shower and try saline spray');
+
+/*  ----------------------------------------------------------------------------------------------- */
+
+CREATE TABLE Employee(
+Employee_ID VARCHAR (20) NOT NULL,
+Employee_Firstname VARCHAR (20) NOT NULL,
+Employee_Lastname VARCHAR (20) NOT NULL,
+Occupation VARCHAR (20) NOT NULL,
+Phone_Number VARCHAR (20) NOT NULL,
+PRIMARY KEY (Employee_ID)
+);
+
+INSERT INTO Employee (Employee_ID, Employee_Firstname, Employee_Lastname, Occupation, Phone_Number)
+VALUES ('D202', 'Aman', 'Sandhu', 'Receptionist', '1234567890');
+INSERT INTO Employee (Employee_ID, Employee_Firstname, Employee_Lastname, Occupation, Phone_Number)
+VALUES ('D204', 'Kiran', 'Gill', 'Nurse', '4563210987');
+INSERT INTO Employee (Employee_ID, Employee_Firstname, Employee_Lastname, Occupation, Phone_Number)
+VALUES ('D206', 'Amolak', 'Sidhu', 'General practitioner', '7890123236');
+INSERT INTO Employee (Employee_ID, Employee_Firstname, Employee_Lastname, Occupation, Phone_Number)
+VALUES ('D208', 'Karan', 'Mann', 'Nurse', '4561230987');
+INSERT INTO Employee (Employee_ID, Employee_Firstname, Employee_Lastname, Occupation, Phone_Number)
+VALUES ('D209', 'Harry', 'Potter', 'Physical therapist', '3451235678');
+INSERT INTO Employee (Employee_ID, Employee_Firstname, Employee_Lastname, Occupation, Phone_Number)
+VALUES ('D203', 'John', 'Smith', 'Receptionist', '6781230456');
+INSERT INTO Employee (Employee_ID, Employee_Firstname, Employee_Lastname, Occupation, Phone_Number)
+VALUES ('D205', 'Ravi', 'Kumar', 'Medical assistant', '7890456123');
+INSERT INTO Employee (Employee_ID, Employee_Firstname, Employee_Lastname, Occupation, Phone_Number)
+VALUES ('D207', 'Abhi', 'Mannan', 'Dentist', '3457890123');
+
+
+/* ------------------------------------------------------------------------------------------------ */
+
+CREATE TABLE Account (
+Employee_ID VARCHAR (20),
+Patient_ID int,
+User_ID int identity(1,1)  NOT NULL,
+Username VARCHAR (20) NOT NULL,
+Password VARCHAR (20) NOT NULL,
+Role int NOT NULL,
+PRIMARY KEY(User_ID)
+);
+
+
+
+
+INSERT INTO Account (Employee_ID, Username, Password, Role)
+VALUES ('D200', 'abhi', 'A678','0 ');
+INSERT INTO Account (Patient_ID, Username, Password, Role)
+VALUES ('5', 'marry', 'V0987',' 3');
+INSERT INTO Account (Employee_ID, Username, Password, Role)
+VALUES ( 'D206', 'harry', 'B1234',' 3');
+INSERT INTO Account (Patient_ID, Username, Password, Role)
+VALUES ('6', 'john', 'A3456','3 ');
+INSERT INTO Account (Employee_ID, Username, Password, Role)
+VALUES ('D209', 'kiran', 'K45678','3 ');
+INSERT INTO Account (Patient_ID, Username, Password, Role)
+VALUES ('3' , 'aman', 'H1678',' 2');
+INSERT INTO Account (Employee_ID, Username, Password, Role)
+VALUES ('D205', 'adam', 'D9823','1 ');
+INSERT INTO Account (Patient_ID, Username, Password, Role)
+VALUES ('4' , 'sandeep', 'L25098',' 2');
+
+/*------------------------------------------------------------*/
+insert into account(Employee_ID, Username, Password, Role)values ('D209', 'kiran', 'K45678','3 ') ;
+insert into account( Patient_ID, Username, Password, Role)values ('4' , 'sandeep', 'L25098',' 2') ;
+Update account set Patient_ID='4', Password='O67842', Role='3'  where Username='sandeep';
+Update account set Employee_ID='D207', Password='K45678', Role='3'  where Username='arry'
+delete from account where User_ID='3';
+select * from account;
+select * from account where User_ID='' or Username='john';
+delete from account;
+select * from account where Username='john' and Password='A3456';
+Update account set Password='B10238' where User_ID='4'; 
+insert into appointment(Patient_ID, Appointment_Date, Location)values('2019-03-03', '3071 Pharmacy Ave');
+insert into appointment(Employee_ID, Appointment_Date, Location)values('D202', '2019-03-18', '2543 Pharmacy Ave');
+insert into appointment(Employee_ID,Patient_ID, Appointment_Date, Location)values ('D204','3','2019-03-13', '2543 Pharmacy Ave');
+update appointment set Appointment_Date='2019-02-06', Location='2543 Pharmacy Ave' where appointment.Appointment_ID='2';
+update appointment set Appointment_Date='2019-03-22', Location='3071 Pharmacy Ave',Employee_ID='D202' where appointment.Appointment_ID='2';
+update appointment set Appointment_Date='2019-03-13', Location='2543 Pharmacy Ave',Employee_ID='D213' where appointment.Appointment_ID='2';
+delete from appointment where appointment.Appointment_ID='2'
+select * from appointment;
+select * from appointment where Appointment_ID='1';
+delete from appointment;
+insert into treatment(Treatment_Date, Patient_ID, Employee_ID, Diagnosis)values('2019-03-02','7', 'D209', 'Joint pains');
+update treatment set Treatment_Date='2019-03-04', Patient_ID='1', Employee_ID='D209', Treatment='Eat some pain killer' where treatment.Treatment_ID='1';
+update treatment set Treatment_Date='2019-03-05', Diagnosis='Fever' where treatment.Treatment_ID='1';
+delete from treatment where treatment.Treatment_ID='2';
+select * from treatment;
+select * from treatment where treatment.Treatment_ID='1';
+select t.Treatment_Date,t.Patient_ID,t.Diagnosis,p.Patient_Lastname,p.Patient_Firstname,e.Employee_Firstname,e.Employee_Lastname,t.Treatment from treatment as t,patient as p,employee as e where t.Patient_ID=p.Patient_ID and t.Employee_ID=e.Employee_ID;
+select t.Treatment_Date,t.Patient_ID,t.Diagnosis,p.Patient_Firstname,p.Patient_Lastname,e.Employee_Firstname,e.Employee_Lastname from treatment as t,patient as p,employee as e where t.Treatment_ID='4' and t.Employee_ID=e.Employee_ID and t.Patient_ID=p.Patient_ID ;
+delete from treatment;
+insert into bill(Bill_Date, Patient_ID, Treatment_ID, Treatment_Fee)values ('2019-08-15', '2', '3', '$30');
+update bill set Bill_Date='2019-10-15', Treatment_Fee='$35' where bill.Bill_ID='1';
+update bill set Bill_Date='2019-10-15', Treatment_Fee='$35',Treatment_ID='3',Patient_ID='2' where bill.Bill_ID='1';
+delete from bill where bill.Bill_ID='1';
+select * from bill;
+select * from bill as b where b.Bill_ID='2';
+select b.Bill_ID,b.Bill_Date,b.Treatment_Fee,p.Patient_Firstname,p.Patient_Lastname from bill as b,patient as p where b.Bill_ID='2' and b.Patient_ID = p.Patient_ID;
+delete from bill where bill.Bill_ID='1';
+insert into employee(Employee_ID, Employee_Firstname, Employee_Lastname, Occupation, Phone_Number) values('D203', 'John', 'Smith', 'Receptionist', '6781230456')
+update employee set Employee_Firstname='John', Employee_Lastname='Carter', Occupation='Receptionist', Phone_Number='4678324271' where employee.Employee_ID='3';
+delete from employee where employee.Employee_ID='3';
+select * from employee;
+select * from employee where employee.Employee_ID='' or employee.Employee_Firstname='' or employee.Employee_Lastname='Mannan';
+delete from employee;
+insert into patient(Patient_Lastname, Patient_Firstname, Gender, Address, Phone_Number, DOB, Email) values ('Archer', 'Jonathan', 'male' ,'kipling avenue' ,'4563217890','1999-11-20','Archer124@yahoo.com.ca') ;
+update patient set Patient_Firstname='Jonathan',Patient_Lastname='Archer', Gender='male', Address='Jane Street', Phone_Number='5673450912', DOB='1999-11-20', Email='Jonthan324@yahoo.com.ca' where patient.Patient_ID='3';
+delete from patient where patient.Patient_ID='3';
+select * from patient;
+select * from patient where patient.Patient_ID='' or patient.Patient_Firstname='' or patient.Patient_Lastname='Taylor' ;
+delete from patient;
+select DISTINCT a.Appointment_ID,a.Appointment_Date,p.Patient_Firstname ,p.Patient_Lastname from appointment as a, employee as e,patient as p where a.Employee_ID='D202' and p.Patient_ID=a.Patient_ID;
+select DISTINCT a.Appointment_ID,a.Appointment_Date,a.Location from appointment as a, employee as e,patient as p where a.Appointment_ID='3' or a.Patient_ID='';
